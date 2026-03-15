@@ -1,33 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-<title>Dashboard</title>
+<meta charset="UTF-8">
+<title>Business Tracker Dashboard</title>
+
 <link rel="stylesheet" href="css/styles.css">
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
 
-<h1>Business Dashboard</h1>
+<header class="topbar">
+<h2>Business Tracker</h2>
+<button id="logoutBtn">Logout</button>
+</header>
+
+<main class="container">
+
+<h1>Dashboard</h1>
 
 <div class="cards">
 
 <div class="card">
 <h3>Total Sales</h3>
-<p id="sales"></p>
+<p id="sales">0</p>
 </div>
 
 <div class="card">
 <h3>Total Expenses</h3>
-<p id="expenses"></p>
+<p id="expenses">0</p>
 </div>
 
 <div class="card">
 <h3>Profit</h3>
-<p id="profit"></p>
+<p id="profit">0</p>
 </div>
 
 </div>
+
+<div class="chart-container">
+<h3>Sales Trend</h3>
+<canvas id="salesChart"></canvas>
+</div>
+
+</main>
 
 <script type="module" src="js/dashboard.js"></script>
 
