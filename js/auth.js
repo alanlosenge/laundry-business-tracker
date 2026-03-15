@@ -1,41 +1,59 @@
-import { supabase } from "./supabaseClient.js"
+// auth.js
+import { supabase } from './supabaseClient.js';
 
-async function signup(){
+document.addEventListener("DOMContentLoaded", () => {
 
-const email = document.getElementById("email").value
-const password = document.getElementById("password").value
+    // Initialize particles background
+    if (typeof tsParticles !== "undefined") {
+        tsParticles.load("particles", {
+            fpsLimit: 60,
+            particles: {
+                number: { value: 80, density: { enable: true, area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.2, random: true },
+                size: { value: 3, random: true },
+                move: { enable: true, speed: 1, direction: "none", outModes: "out" }
+            },
+            interactivity: {
+                events: { onHover: { enable: true, mode: "repulse" } },
+                modes: { repulse: { distance: 100, duration: 0.4 } }
+            },
+            detectRetina: true
+        });
+    }
 
-const {data,error} = await supabase.auth.signUp({
-email: email,
-password: password
-})
+    // Helper function to display messages
+    const showMessage = msg => document.getElementById('message').innerText = msg;
 
-if(error){
-document.getElementById("message").innerText = error.message
-}
-else{
-document.getElementById("message").innerText = "Account created!"
-}
-}
+    // Signup function
+    async function signup() {
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        if (!email || !password) return showMessage("Enter email & password");
 
-async function login(){
+        const { error } = await supabase.auth.signUp({ email, password });
+        if (error) showMessage(error.message);
+        else showMessage("Signup successful! Please login.");
+    }
 
-const email = document.getElementById("email").value
-const password = document.getElementById("password").value
+    // Login function
+    async function login() {
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        if (!email || !password) return showMessage("Enter email & password");
 
-const {data,error} = await supabase.auth.signInWithPassword({
-email: email,
-password: password
-})
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) showMessage(error.message);
+        else if (data?.session) {
+            // Login successful → go to dashboard
+            window.location.href = "dashboard.html";
+        } else {
+            showMessage("Login failed. Check credentials.");
+        }
+    }
 
-if(error){
-document.getElementById("message").innerText = error.message
-}
-else{
-window.location.href = "dashboard.html"
-}
-
-}
-
-window.signup = signup
-window.login = login
+    // Attach buttons
+    document.getElementById('signupBtn').addEventListener('click', signup);
+    document.getElementById('loginBtn').addEventListener('click', login);
+});

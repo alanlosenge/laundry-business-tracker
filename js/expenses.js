@@ -1,94 +1,60 @@
 import { supabase } from "./supabaseClient.js"
 
-const logoutBtn = document.getElementById("logoutBtn")
-
-logoutBtn.addEventListener("click", async () => {
-await supabase.auth.signOut()
-window.location.href = "index.html"
+// Logout
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    await supabase.auth.signOut()
+    window.location.href = "index.html"
 })
 
+// Add expense
 async function addExpense(){
+    const name = document.getElementById("name").value
+    const category = document.getElementById("category").value
+    const amount = document.getElementById("amount").value
 
-const name = document.getElementById("name").value
-const category = document.getElementById("category").value
-const amount = document.getElementById("amount").value
+    const { data: userData } = await supabase.auth.getUser()
+    const user = userData.user
 
-const { data: userData } = await supabase.auth.getUser()
-const user = userData.user
+    const { error } = await supabase.from("expenses").insert([
+        { name, category, amount, user_id: user.id }
+    ])
 
-const { error } = await supabase
-.from("expenses")
-.insert([
-{
-name: name,
-category: category,
-amount: amount,
-user_id: user.id
-}
-])
-
-if(error){
-alert("Error adding expense")
-}
-else{
-alert("Expense added")
-loadExpenses()
+    if(error){ alert("Error adding expense") }
+    else { loadExpenses() }
 }
 
-}
-
+// Load expenses
 async function loadExpenses(){
+    const { data: userData } = await supabase.auth.getUser()
+    const user = userData.user
 
-const { data: userData } = await supabase.auth.getUser()
-const user = userData.user
+    const { data: expenses } = await supabase
+        .from("expenses")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("date",{ascending:false})
 
-const { data: expenses } = await supabase
-.from("expenses")
-.select("*")
-.eq("user_id", user.id)
-.order("date",{ascending:false})
-
-const table = document.getElementById("expenseTable")
-
-table.innerHTML = ""
-
-expenses.forEach(expense => {
-
-const row = document.createElement("tr")
-
-row.innerHTML = `
-<td>${expense.name}</td>
-<td>${expense.category}</td>
-<td>${expense.amount}</td>
-<td>${expense.date}</td>
-<td>
-<button onclick="deleteExpense('${expense.id}')">Delete</button>
-</td>
-`
-
-table.appendChild(row)
-
-})
-
+    const table = document.getElementById("expenseTable")
+    table.innerHTML = ""
+    expenses.forEach(e => {
+        const row = document.createElement("tr")
+        row.innerHTML = `
+        <td>${e.name}</td>
+        <td>${e.category}</td>
+        <td>${e.amount}</td>
+        <td>${e.date}</td>
+        <td><button onclick="deleteExpense('${e.id}')">Delete</button></td>
+        `
+        table.appendChild(row)
+    })
 }
 
+// Delete expense
 async function deleteExpense(id){
-
-const { error } = await supabase
-.from("expenses")
-.delete()
-.eq("id",id)
-
-if(error){
-alert("Delete failed")
-}
-else{
-loadExpenses()
-}
-
+    await supabase.from("expenses").delete().eq("id", id)
+    loadExpenses()
 }
 
 window.addExpense = addExpense
 window.deleteExpense = deleteExpense
-
 loadExpenses()

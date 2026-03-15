@@ -1,27 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Business Tracker Login</title>
 <link rel="stylesheet" href="css/styles.css">
-</head>
+<style>
+/* Body & background */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: url('images/laundry-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
 
+/* Optional overlay to lighten the background */
+body::before {
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(173, 216, 230, 0.4); /* light blue overlay */
+    z-index: 0;
+}
+
+/* Particle container (optional) */
+#particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Login card */
+.login-box {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    width: 380px;
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+/* Title */
+.login-box h2 {
+    margin-bottom: 30px;
+    color: #1e3a8a; /* dark blue */
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+/* Inputs */
+.login-box input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #a5b4fc;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: #3b82f6; /* bright blue */
+    box-shadow: 0 0 5px rgba(59,130,246,0.5);
+}
+
+/* Buttons */
+.login-box button {
+    width: 100%;
+    padding: 12px 0;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6; /* bright blue */
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.login-box button:hover {
+    background: #1e40af; /* dark blue */
+    box-shadow: 0 0 12px rgba(59,130,246,0.5);
+}
+
+/* Message */
+.login-box p#message {
+    margin-top: 10px;
+    color: #dc2626; /* red */
+    font-weight: bold;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {opacity: 0; transform: translateY(-20px);}
+    100% {opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media(max-width: 420px){
+    .login-box {
+        width: 90%;
+        padding: 40px 25px;
+    }
+}
+</style>
+</head>
 <body>
 
-<div class="auth-container">
+<!-- Particle background -->
+<div id="particles"></div>
 
-<h2>Business Tracker</h2>
-
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
-
-<button onclick="signup()">Sign Up</button>
-<button onclick="login()">Login</button>
-
-<p id="message"></p>
-
+<!-- Login card -->
+<div class="login-box">
+    <h2>Laundry Business Tracker</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button id="signupBtn">Sign Up</button>
+    <button id="loginBtn">Login</button>
+    <p id="message"></p>
 </div>
 
+<!-- tsParticles library -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 <script type="module" src="js/auth.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    tsParticles.load("particles", {
+        fpsLimit: 60,
+        particles: {
+            number: { value: 70, density: { enable: true, area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.2, random: true },
+            size: { value: 3, random: true },
+            move: { enable: true, speed: 1, direction: "none", outModes: "out" }
+        },
+        interactivity: {
+            events: { onHover: { enable: true, mode: "repulse" } },
+            modes: { repulse: { distance: 100, duration: 0.4 } }
+        },
+        detectRetina: true
+    });
+});
+</script>
 
 </body>
 </html>

@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
-<title>Expense Management</title>
+<title>Expenses - Business Tracker</title>
 <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
 
-<header class="topbar">
+<div class="wrapper">
 
+<!-- Sidebar -->
+<aside class="sidebar">
 <h2>Business Tracker</h2>
-
 <nav>
 <a href="dashboard.html">Dashboard</a>
 <a href="sales.html">Sales</a>
-<a href="expenses.html">Expenses</a>
+<a href="expenses.html" class="active">Expenses</a>
 <a href="inventory.html">Inventory</a>
 </nav>
+</aside>
 
+<!-- Main content -->
+<div class="main">
+
+<header class="topbar">
+<h1>Expense Management</h1>
 <button id="logoutBtn">Logout</button>
-
 </header>
 
 <main class="container">
 
-<h1>Expense Management</h1>
-
 <div class="form-box">
-
 <h3>Add Expense</h3>
-
 <input type="text" id="name" placeholder="Expense Name">
 <input type="text" id="category" placeholder="Category">
 <input type="number" id="amount" placeholder="Amount">
-
 <button onclick="addExpense()">Add Expense</button>
-
 </div>
 
 <h3>Expense Records</h3>
-
 <table>
-
 <thead>
 <tr>
 <th>Name</th>
@@ -53,15 +49,13 @@
 <th>Action</th>
 </tr>
 </thead>
-
 <tbody id="expenseTable"></tbody>
-
 </table>
 
 </main>
+</div>
+</div>
 
 <script type="module" src="js/expenses.js"></script>
-
 </body>
-
 </html>

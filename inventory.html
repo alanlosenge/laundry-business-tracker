@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Inventory - Business Tracker</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+<!-- Sidebar -->
+<aside class="sidebar">
+<h2>Business Tracker</h2>
+<nav>
+<a href="dashboard.html">Dashboard</a>
+<a href="sales.html">Sales</a>
+<a href="expenses.html">Expenses</a>
+<a href="inventory.html" class="active">Inventory</a>
+</nav>
+</aside>
+
+<!-- Main content -->
+<div class="main">
+
+<header class="topbar">
+<h1>Inventory Management</h1>
+<button id="logoutBtn">Logout</button>
+</header>
+
+<main class="container">
+
+<div class="form-box">
+<h3>Add Inventory Item</h3>
+<input type="text" id="item" placeholder="Item Name">
+<input type="number" id="quantity" placeholder="Quantity">
+<input type="number" id="cost" placeholder="Cost">
+<button onclick="addItem()">Add Item</button>
+</div>
+
+<h3>Inventory List</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Quantity</th>
+<th>Cost</th>
+<th>Last Updated</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="inventoryTable"></tbody>
+</table>
+
+</main>
+</div>
+</div>
+
+<script type="module" src="js/inventory.js"></script>
+</body>
+</html>

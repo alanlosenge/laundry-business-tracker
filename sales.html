@@ -1,64 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
-<title>Sales Management</title>
+<title>Sales - Business Tracker</title>
 <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
 
-<header class="topbar">
-<h2>Business Tracker</h2>
+<div class="wrapper">
 
+<aside class="sidebar">
+<h2>Business Tracker</h2>
 <nav>
 <a href="dashboard.html">Dashboard</a>
-<a href="sales.html">Sales</a>
+<a href="sales.html" class="active">Sales</a>
+<a href="expenses.html">Expenses</a>
+<a href="inventory.html">Inventory</a>
 </nav>
+</aside>
 
+<div class="main">
+<header class="topbar">
+<h1>Sales Management</h1>
 <button id="logoutBtn">Logout</button>
 </header>
 
 <main class="container">
-
-<h1>Sales Management</h1>
-
 <div class="form-box">
-
 <h3>Add Sale</h3>
-
 <input type="text" id="service" placeholder="Service/Product">
 <input type="number" id="quantity" placeholder="Quantity">
 <input type="number" id="price" placeholder="Price">
-
 <button onclick="addSale()">Add Sale</button>
-
 </div>
 
 <h3>Sales Records</h3>
-
 <table>
-
 <thead>
-<tr>
-<th>Service</th>
-<th>Quantity</th>
-<th>Price</th>
-<th>Total</th>
-<th>Date</th>
-<th>Action</th>
-</tr>
+<tr><th>Service</th><th>Quantity</th><th>Price</th><th>Total</th><th>Date</th><th>Action</th></tr>
 </thead>
-
 <tbody id="salesTable"></tbody>
-
 </table>
-
 </main>
+</div>
+</div>
 
 <script type="module" src="js/sales.js"></script>
-
 </body>
-
 </html>

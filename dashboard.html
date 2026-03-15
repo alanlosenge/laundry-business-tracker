@@ -1,45 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
-<title>Business Tracker Dashboard</title>
-
+<title>Dashboard - Business Tracker</title>
 <link rel="stylesheet" href="css/styles.css">
-
-<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
-
 <body>
 
-<header class="topbar">
+<div class="wrapper">
+
+<!-- Sidebar -->
+<aside class="sidebar">
 <h2>Business Tracker</h2>
+<nav>
+<a href="dashboard.html" class="active">Dashboard</a>
+<a href="sales.html">Sales</a>
+<a href="expenses.html">Expenses</a>
+<a href="inventory.html">Inventory</a>
+</nav>
+</aside>
+
+<!-- Main content -->
+<div class="main">
+
+<header class="topbar">
+<h1>Dashboard</h1>
 <button id="logoutBtn">Logout</button>
 </header>
 
 <main class="container">
-
-<h1>Dashboard</h1>
-
 <div class="cards">
-
-<div class="card">
-<h3>Total Sales</h3>
-<p id="sales">0</p>
-</div>
-
-<div class="card">
-<h3>Total Expenses</h3>
-<p id="expenses">0</p>
-</div>
-
-<div class="card">
-<h3>Profit</h3>
-<p id="profit">0</p>
-</div>
-
+<div class="card"><h3>Total Sales</h3><p id="sales">0</p></div>
+<div class="card"><h3>Total Expenses</h3><p id="expenses">0</p></div>
+<div class="card"><h3>Profit</h3><p id="profit">0</p></div>
 </div>
 
 <div class="chart-container">
@@ -47,10 +41,20 @@
 <canvas id="salesChart"></canvas>
 </div>
 
+<div class="chart-container">
+<h3>Profit Trend</h3>
+<canvas id="profitChart"></canvas>
+</div>
+
+<div class="chart-container">
+<h3>Expenses Trend</h3>
+<canvas id="expenseChart"></canvas>
+</div>
+
 </main>
+</div>
+</div>
 
 <script type="module" src="js/dashboard.js"></script>
-
 </body>
-
 </html>
