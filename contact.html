@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Laundry Tracker</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="sales.html">Sales</a>
+            <a href="expenses.html">Expenses</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <!-- Topbar -->
+        <div class="topbar">
+            <h3>Contact & Reviews</h3>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+
+        <div class="container">
+
+            <!-- Contact Information -->
+            <div class="card">
+                <h3>Contact Information</h3>
+                <p><strong>Business Name:</strong> Laundry Business Tracker</p>
+                <p><strong>Phone:</strong> +254 712 345 678</p>
+                <p><strong>Email:</strong> laundrybusiness@email.com</p>
+                <p><strong>Location:</strong> Nairobi, Kenya</p>
+                <p><strong>Working Hours:</strong> 8:00 AM – 8:00 PM</p>
+            </div>
+
+            <br>
+
+            <!-- Review Form -->
+            <div class="form-box">
+
+                <h3>Submit a Review</h3>
+
+                <input type="text" id="name" placeholder="Your Name">
+
+                <input type="number" id="rating" placeholder="Rating (1 - 5)" min="1" max="5">
+
+                <input type="text" id="review" placeholder="Write your review">
+
+                <button onclick="submitReview()">Submit Review</button>
+
+            </div>
+
+
+            <!-- Reviews List -->
+            <h3>Customer Reviews</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Rating</th>
+                        <th>Review</th>
+                    </tr>
+                </thead>
+
+                <tbody id="reviewsTable">
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let reviews = []
+
+function submitReview(){
+
+    const name = document.getElementById("name").value
+    const rating = document.getElementById("rating").value
+    const review = document.getElementById("review").value
+
+    if(!name || !rating || !review){
+        alert("Please fill all fields")
+        return
+    }
+
+    reviews.push({name, rating, review})
+
+    displayReviews()
+
+    document.getElementById("name").value = ""
+    document.getElementById("rating").value = ""
+    document.getElementById("review").value = ""
+}
+
+function displayReviews(){
+
+    const table = document.getElementById("reviewsTable")
+
+    table.innerHTML = ""
+
+    reviews.forEach(r => {
+
+        const row = document.createElement("tr")
+
+        row.innerHTML = `
+            <td>${r.name}</td>
+            <td>${r.rating} ⭐</td>
+            <td>${r.review}</td>
+        `
+
+        table.appendChild(row)
+    })
+}
+
+</script>
+
+</body>
+</html>

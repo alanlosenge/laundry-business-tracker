@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Business Tracker Login</title>
+<title>Laundry Business Tracker</title>
 <link rel="stylesheet" href="css/styles.css">
+
 <style>
+
 /* Body & background */
 body {
     margin: 0;
@@ -18,7 +20,7 @@ body {
     background-size: cover;
 }
 
-/* Optional overlay to lighten the background */
+/* Light blue overlay */
 body::before {
     content: "";
     position: absolute;
@@ -26,11 +28,11 @@ body::before {
     left:0;
     width:100%;
     height:100%;
-    background: rgba(173, 216, 230, 0.4); /* light blue overlay */
+    background: rgba(173,216,230,0.45);
     z-index: 0;
 }
 
-/* Particle container (optional) */
+/* Particle container */
 #particles {
     position: absolute;
     width: 100%;
@@ -44,37 +46,50 @@ body::before {
 .login-box {
     position: relative;
     z-index: 2;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 50px 40px;
+    background: rgba(255,255,255,0.96);
+    padding: 45px 40px;
     border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    width: 380px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    width: 390px;
     text-align: center;
     animation: fadeIn 1s ease;
 }
 
+/* Logo */
+.logo {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
 /* Title */
 .login-box h2 {
-    margin-bottom: 30px;
-    color: #1e3a8a; /* dark blue */
-    font-size: 28px;
-    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #1e3a8a;
+    font-size: 26px;
+}
+
+/* Description */
+.business-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.5;
 }
 
 /* Inputs */
 .login-box input {
     width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 20px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
     border-radius: 8px;
     border: 1px solid #a5b4fc;
-    font-size: 16px;
+    font-size: 15px;
     transition: all 0.3s;
 }
 
 .login-box input:focus {
     outline: none;
-    border-color: #3b82f6; /* bright blue */
+    border-color: #3b82f6;
     box-shadow: 0 0 5px rgba(59,130,246,0.5);
 }
 
@@ -82,10 +97,10 @@ body::before {
 .login-box button {
     width: 100%;
     padding: 12px 0;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     border: none;
     border-radius: 8px;
-    background: #3b82f6; /* bright blue */
+    background: #3b82f6;
     color: white;
     font-weight: bold;
     font-size: 16px;
@@ -94,48 +109,64 @@ body::before {
 }
 
 .login-box button:hover {
-    background: #1e40af; /* dark blue */
-    box-shadow: 0 0 12px rgba(59,130,246,0.5);
+    background: #1e40af;
+    box-shadow: 0 0 12px rgba(59,130,246,0.6);
 }
 
 /* Message */
-.login-box p#message {
+#message {
     margin-top: 10px;
-    color: #dc2626; /* red */
+    color: #dc2626;
     font-weight: bold;
 }
 
-/* Fade-in animation */
+/* Fade animation */
 @keyframes fadeIn {
-    0% {opacity: 0; transform: translateY(-20px);}
-    100% {opacity: 1; transform: translateY(0);}
+    0% {opacity:0; transform:translateY(-20px);}
+    100% {opacity:1; transform:translateY(0);}
 }
 
-/* Responsive */
-@media(max-width: 420px){
-    .login-box {
-        width: 90%;
-        padding: 40px 25px;
+/* Mobile responsiveness */
+@media(max-width:420px){
+    .login-box{
+        width:90%;
+        padding:35px 25px;
     }
 }
+
 </style>
 </head>
+
 <body>
 
-<!-- Particle background -->
+<!-- Particles -->
 <div id="particles"></div>
 
-<!-- Login card -->
+<!-- Login Card -->
 <div class="login-box">
+
+    <!-- Logo -->
+    <img src="images/logo.png" class="logo" alt="Laundry Logo">
+
     <h2>Laundry Business Tracker</h2>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
+
+    <p class="business-description">
+        A simple management system designed to help laundry businesses track 
+        daily sales, expenses, and inventory efficiently. Monitor your 
+        business performance and keep accurate records all in one place.
+    </p>
+
+    <input type="email" id="email" placeholder="Enter your email">
+    <input type="password" id="password" placeholder="Enter your password">
+
     <button id="signupBtn">Sign Up</button>
     <button id="loginBtn">Login</button>
+
     <p id="message"></p>
+
 </div>
 
-<!-- tsParticles library -->
+<!-- Particle library -->
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 <script type="module" src="js/auth.js"></script>
 
@@ -149,11 +180,11 @@ document.addEventListener("DOMContentLoaded", () => {
             shape: { type: "circle" },
             opacity: { value: 0.2, random: true },
             size: { value: 3, random: true },
-            move: { enable: true, speed: 1, direction: "none", outModes: "out" }
+            move: { enable: true, speed: 1 }
         },
         interactivity: {
             events: { onHover: { enable: true, mode: "repulse" } },
-            modes: { repulse: { distance: 100, duration: 0.4 } }
+            modes: { repulse: { distance: 100 } }
         },
         detectRetina: true
     });
